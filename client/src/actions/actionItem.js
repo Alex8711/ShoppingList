@@ -1,3 +1,4 @@
+import axios from "axios";
 //action types
 export const GET_ITEMS = "GET_ITEMS";
 export const DELETE_ITEM = "DELETE_ITEM";
@@ -5,8 +6,13 @@ export const ADD_ITEM = "ADD_ITEM";
 
 //action creators
 export function getItems() {
-  return {
-    type: GET_ITEMS
+  return function(dispatch) {
+    return axios.get("/routes/api/items").then(res => {
+      dispatch({
+        type: GET_ITEMS,
+        payload: res.data
+      });
+    });
   };
 }
 
