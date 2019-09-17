@@ -33,8 +33,12 @@ class ItemModal extends Component {
   }
 
   handleSubmit(event) {
-    this.props.addItem(this.state.value);
     event.preventDefault();
+
+    const newItem = { name: this.state.value };
+    this.props.addItem(newItem);
+
+    this.toggle();
   }
 
   render() {
@@ -61,7 +65,9 @@ class ItemModal extends Component {
   }
 }
 
-const mapStateToProps = state => {};
+const mapStateToProps = state => ({
+  item: state.item
+});
 
 export default connect(
   mapStateToProps,

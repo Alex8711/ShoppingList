@@ -23,9 +23,13 @@ export function deleteItem(id) {
   };
 }
 
-export function addItem(value) {
-  return {
-    type: ADD_ITEM,
-    payload: value
+export function addItem(item) {
+  return function(dispatch) {
+    return axios.post("/routes/api/items", item).then(res => {
+      dispatch({
+        type: ADD_ITEM,
+        payload: res.data
+      });
+    });
   };
 }

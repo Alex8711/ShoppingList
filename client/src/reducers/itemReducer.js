@@ -1,5 +1,4 @@
 import { GET_ITEMS, DELETE_ITEM, ADD_ITEM } from "../actions/actionItem";
-import uuid from "uuid";
 
 const initialState = {
   items: []
@@ -16,7 +15,7 @@ function itemReducer(state = initialState, action) {
       };
     case ADD_ITEM:
       return {
-        items: [...state.items, { id: uuid(), name: action.payload }]
+        items: [...state.items, action.payload]
       };
     default:
       return state;
